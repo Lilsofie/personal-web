@@ -20,5 +20,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD}}
 
       - name: Build and push Docker image
-        run: |
-          docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/personal-web:latest . --push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/personal-web:latest
